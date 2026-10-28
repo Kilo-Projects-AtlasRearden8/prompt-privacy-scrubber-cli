@@ -33,11 +33,12 @@ CITY_STATE_ZIP_RE = re.compile(
 
 _TITLE = r"(?:Mr|Mrs|Ms|Dr|Prof|Rev|Hon|Sr|Jr|Mx)\.?"
 _GREET = r"(?:Dear|Hello|Hi|From)"
-_NAME_WORD = r"[A-Z][a-z]+(?:['\-][a-zA-Z]+)?"
+_NAME_WORD = r"[A-Z](?:[a-z]+|'[A-Za-z]+)(?:['\-][A-Za-z]+)*"
 _NAME_PAIR = rf"{_NAME_WORD}\s+{_NAME_WORD}"
+_NAME = rf"{_NAME_WORD}(?:\s+{_NAME_WORD})?"
 
-_TITLE_NAME_RE = re.compile(rf"\b({_TITLE})\s+{_NAME_WORD}(?:\s+{_NAME_WORD})?\b")
-_GREET_NAME_RE = re.compile(rf"\b({_GREET})\s+({_NAME_PAIR})\b(?=\s*[,.!:])")
+_TITLE_NAME_RE = re.compile(rf"\b({_TITLE})\s+{_NAME}\b")
+_GREET_NAME_RE = re.compile(rf"\b({_GREET})\s+({_NAME})\b(?=\s*[,.!:])")
 
 _NUMBER_STREET_COMMA_RE = re.compile(r"\b\d{1,6}\s+[A-Z][a-zA-Z'&\-]+\s*,")
 _SENTENCE_START_NAME_RE = re.compile(

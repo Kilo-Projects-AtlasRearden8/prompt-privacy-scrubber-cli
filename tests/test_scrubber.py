@@ -74,6 +74,14 @@ class ScrubTests(unittest.TestCase):
         self.assertNotIn("Smith", out)
         self.assertNotIn("Jane Doe-Jones", out)
 
+    def test_names_single_name_in_title_and_greeting(self):
+        out = scrub("Hi John, please tell the clerk, or call Dr. O'Neil.")
+        self.assertIn(NAME_TOKEN, out)
+        self.assertIn("Hi [NAME]", out)
+        self.assertIn("Dr. [NAME]", out)
+        self.assertNotIn("John", out)
+        self.assertNotIn("O'Neil", out)
+
     def test_names_sentence_start(self):
         out = scrub("John Smith left the meeting early. The meeting was long.")
         self.assertIn(NAME_TOKEN, out)
