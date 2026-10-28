@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "prompt-privacy-scrubber"
+version = "0.1.0"
+description = "Scrub names, phones, emails, and addresses from text before sending it to an LLM, with optional local-first polishing via an OpenAI-compatible endpoint."
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [{name = "Asdale Dynamics, LLC"}]
+
+[project.scripts]
+scrubber = "scrubber.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
